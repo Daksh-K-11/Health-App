@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import 'package:shriwin/const.dart';
 import 'package:shriwin/pages/hospital_details.dart';
 
@@ -27,9 +26,11 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchHospitals() async {
     final response = await http.get(Uri.parse('$api/hospitals/'));
+    print(response.statusCode);
 
     if (response.statusCode == 200) {
       final List<dynamic> hospitalList = json.decode(response.body);
+      print(response.body);
       setState(() {
         hospitals = hospitalList;
         filteredHospitals = hospitalList;
